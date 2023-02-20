@@ -1,0 +1,2 @@
+Senha criptografada
+passando parâmentros de e-mail e senha
