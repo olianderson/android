@@ -10,4 +10,9 @@
     <color name="cinza_medio">#DBDBDB</color>
     <color name="text_header">#5A96A9</color>
     <color name="text_header_2">#808080</color>
+
+
+    <color name="color_default">#76ADBE</color>
+    <color name="color_header">#76ADBE</color>
+
 </resources>

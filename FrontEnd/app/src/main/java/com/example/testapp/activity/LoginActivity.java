@@ -11,7 +11,6 @@ import android.widget.Toast;
 
 import com.example.testapp.R;
 import com.example.testapp.api.RetrofitiCliente;
-import com.example.testapp.model.LoginUsuario;
 import com.example.testapp.model.Usuario;
 
 import retrofit2.Call;
@@ -33,8 +32,8 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
 
         inicializarComponentes();
-        /** Fazer login do usuário
-         */
+
+        // Fazer login do usuario
         botaoEntrar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -42,8 +41,6 @@ public class LoginActivity extends AppCompatActivity {
                 String textoEmail = campoEmail.getText().toString();
                 String textoSenha = campoSenha.getText().toString();
 
-                /** Validar compos preenchidos na tela de login
-                 */
                 if (!textoEmail.isEmpty()) {
                     if (!textoSenha.isEmpty()) {
 
@@ -64,19 +61,19 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
-    /** Método responsável por validar usuário com e-mail e senha
+
+    /**
+     * Método responsável por validar usuário com e-mail e senha
+     *
      */
     public void login(Usuario usuario) {
-        /** Realiza chamadaa api
-         */
+
         Call<Usuario> call = RetrofitiCliente
                 .getInstance()
                 .getApi()
                 .login(usuario);
 
         call.enqueue(new Callback<Usuario>() {
-            /** Caso a chamada seja realizada com sucesso entra no método onResponse, caso contrário entra no método onFailure
-             */
             @Override
             public void onResponse(Call<Usuario> call, Response<Usuario> response) {
                 if (response.isSuccessful()) {
@@ -89,6 +86,7 @@ public class LoginActivity extends AppCompatActivity {
                     Toast.makeText(LoginActivity.this, "Login failed!", Toast.LENGTH_LONG).show();
                 }
             }
+
             @Override
             public void onFailure(Call<Usuario> call, Throwable t) {
                 Toast.makeText(LoginActivity.this, "Throwable" + t.getMessage(), Toast.LENGTH_LONG).show();
@@ -97,16 +95,12 @@ public class LoginActivity extends AppCompatActivity {
 
     }
 
-    /** Método responsável por redirecionar o usuário para a tela de login
-     */
     public void abrirCadastro(View view) {
         Intent i = new Intent(LoginActivity.this, CadastroActivity.class);
         startActivity(i);
         finish();
     }
 
-    /** Inicializa os componentes (e-mail, senha e o botão entrar)
-     */
     public void inicializarComponentes () {
         campoEmail = findViewById(R.id.editLoginEmail);
         campoSenha = findViewById(R.id.editLoginSenha);

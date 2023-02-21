@@ -36,8 +36,8 @@ public class CadastroActivity extends AppCompatActivity {
         setContentView(R.layout.activity_cadastro);
 
         inicializarComponentes();
-        /** Cadastrar usuário
-         */
+
+        // Cadastrar usuario
         botaoCadastrar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -47,8 +47,7 @@ public class CadastroActivity extends AppCompatActivity {
                 String textoEmail = campoEmail.getText().toString();
                 String textoSenha = campoSenha.getText().toString();
 
-                /** Validar compos preenchidos na tela de cadastro
-                 */
+                // Validar campos preenchidos
                 if (!textoNome.isEmpty()) {
                     if (!textoSobrenome.isEmpty()) {
                         if (!textoEmail.isEmpty()) {
@@ -78,27 +77,23 @@ public class CadastroActivity extends AppCompatActivity {
             }
         });
     }
-
-    /** Método responsável por cadastrar usuário com e-mail e senha e fazer validações ao fazer o cadastro
+    /**
+     * Método responsável por cadastrar usuário com e-mail e senha
+     * e fazer validações ao fazer o cadastro
      */
     public void  cadastrar (Usuario usuario) {
 
         inicializarComponentes();
 
-        /** Realiza chamadaa api
-         */
         Call<Usuario> call = RetrofitiCliente
                 .getInstance()
                 .getApi()
                 .cadastrar(usuario);
 
         call.enqueue(new Callback<Usuario>() {
-            /** Caso a chamada seja realizada com sucesso entra no método onResponse, caso contrário entra no método onFailure
-             */
             @Override
             public void onResponse(Call<Usuario> call, Response<Usuario> response) {
                 if (response.isSuccessful()) {
-
                     Usuario cadastroResposta = response.body();
 
                     campoNome.setText(cadastroResposta.getNome());
@@ -114,15 +109,58 @@ public class CadastroActivity extends AppCompatActivity {
                     Toast.makeText(CadastroActivity.this, "Couldn't created account", Toast.LENGTH_LONG).show();
                 }
             }
+
             @Override
             public void onFailure(Call<Usuario> call, Throwable t) {
                 Toast.makeText(CadastroActivity.this, t.getMessage(), Toast.LENGTH_LONG).show();
             }
         });
+
+
+        /*
+        inicializarComponentes();
+
+        // create a Retrofit instance
+        retrofit = new Retrofit.Builder()
+                .baseUrl("http://192.168.100.215:8080/math-school/")
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        // create the service interface
+        service = retrofit.create(DataService.class);
+
+        // create the user object
+        Usuario novoUsuario = new Usuario(usuario);
+
+        // Recupera o serviço e salva cadastra novos usuários
+        Call<Usuario> call = service.cadastrar(usuario);
+
+        call.enqueue(new Callback<Usuario>() {
+            @Override
+            public void onResponse(Call<Usuario> call, Response<Usuario> response) {
+                if (response.isSuccessful()) {
+                    Usuario usuarioResposta = response.body();
+
+                    campoNome.setText(usuarioResposta.getNome());
+                    campoSobrenome.setText(usuarioResposta.getSobrenome());
+                    campoEmail.setText(usuarioResposta.getEmail());
+                    campoSenha.setText(usuarioResposta.getSenha());
+
+                    Toast.makeText(CadastroActivity.this, "Create account sucessful!", Toast.LENGTH_LONG).show();
+                    startActivity(new Intent(getApplicationContext(), LoginActivity.class));
+                    finish();
+
+                } else {
+                    Toast.makeText(CadastroActivity.this, "Couldn't created account", Toast.LENGTH_LONG).show();
+                }
+            }
+            @Override
+            public void onFailure(Call<Usuario> call, Throwable t) {
+            }
+        });*/
     }
 
-    /** Inicializa os componentes (nome, sobrenome, e-mail, senha e o botão cadastrar)
-     */
+
     public void inicializarComponentes () {
         campoNome = findViewById(R.id.editCadastrarNome);
         campoSobrenome = findViewById(R.id.editCadastrarSobrenome);

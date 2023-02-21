@@ -3,8 +3,6 @@ package com.example.testapp.model;
 import java.util.UUID;
 
 public class Usuario {
-    /** Atributos do usuário
-     */
     private UUID codigo;
     private String nome;
     private String sobrenome;
@@ -12,21 +10,23 @@ public class Usuario {
     private String senha;
     private String caminhoFoto;
 
-    /** Construtor
-     */
+    // Constructor
     public Usuario() {
     }
+
     public Usuario(String nome, String sobrenome, String email, String senha) {
         this.nome = nome;
         this.sobrenome = sobrenome;
         this.email = email;
         this.senha = senha;
     }
+
     public Usuario(Usuario usuario) {
+
     }
 
-    /** Getters and Setters
-     */
+
+    // Getters and Setters
     public UUID getCodigo() {
         return codigo;
     }

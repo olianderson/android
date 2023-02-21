@@ -7,8 +7,6 @@ import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.POST;
 
-/** Classe responsável pela comunicação com a api
- */
 public interface DataService {
 
     @POST("cadastrar")
