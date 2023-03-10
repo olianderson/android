@@ -37,6 +37,7 @@ public class MainActivity extends AppCompatActivity {
                 enviarEmail();
             }
         });
+
         DrawerLayout drawer = binding.drawerLayout;
         NavigationView navigationView = binding.navView;
         // Passing each menu ID as a set of Ids because each
@@ -45,6 +46,7 @@ public class MainActivity extends AppCompatActivity {
                 R.id.nav_home, R.id.nav_profile, R.id.nav_roadmap, R.id.nav_settings)
                 .setOpenableLayout(drawer)
                 .build();
+
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);

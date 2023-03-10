@@ -5,7 +5,8 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class RetrofitiCliente {
 
-    private static  final String BASE_URL = "http://192.168.100.215:8080/math-school/";
+     private static  final String BASE_URL = "http://192.168.100.215:8080/math-school/";
+    // private static  final String BASE_URL = "http://aws-sa-east-1.connect.psdb.cloud/math-school/";
     private static RetrofitiCliente mInstance;
     private Retrofit retrofit;
 

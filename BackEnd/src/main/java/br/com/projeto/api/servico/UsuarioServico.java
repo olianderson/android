@@ -23,7 +23,6 @@ public class UsuarioServico {
     @Autowired
     private PasswordEncoder encoder;
     
-
     // Método para cadastrar usuarios
     public ResponseEntity<?> cadastrar(Usuario objeto) {
         Usuario emailCadastro = acao.findByEmail(objeto.getEmail());
@@ -53,6 +52,27 @@ public class UsuarioServico {
                 return new ResponseEntity<>(acao.save(objeto), HttpStatus.CREATED);
             }
         }
+    }
+
+    // Método para validar usuário com e-mail e senha
+    public ResponseEntity<?> validarUsuario(Usuario objeto) {
+        
+        Usuario emailUsuario = acao.findByEmail(objeto.getEmail());
+        String senhaEmail = acao.findByEmail(objeto.getEmail()).getSenha();
+        Boolean valid = encoder.matches(objeto.getSenha(), senhaEmail);
+
+        if (emailUsuario.equals(null)) {
+            mensagem.setMensagem("E-mail não encontrado!");
+            return new ResponseEntity<>(mensagem, HttpStatus.NOT_FOUND);
+        }
+        
+        if (!valid) {
+            mensagem.setMensagem("E-mail ou senha incorretos!");
+            return new ResponseEntity<>(mensagem, HttpStatus.UNAUTHORIZED);
+        } 
+
+        mensagem.setMensagem("Usuário logado com sucesso!");
+        return new ResponseEntity<>(mensagem, HttpStatus.OK);
     }
 
     // Método para editar dados
@@ -104,27 +124,5 @@ public class UsuarioServico {
         }else {
             return false;
         }
-    }
-    // Método para validar usuário com e-mail e senha
-    public ResponseEntity<?> validarUsuario(Usuario objeto) {
-        
-        Usuario emailUsuario = acao.findByEmail(objeto.getEmail());
-        String senhaEmail = acao.findByEmail(objeto.getEmail()).getSenha();
-        Boolean valid = encoder.matches(objeto.getSenha(), senhaEmail);
-
-        if (emailUsuario.equals(null)) {
-
-            mensagem.setMensagem("E-mail não encontrado!");
-            return new ResponseEntity<>(mensagem, HttpStatus.NOT_FOUND);
-        }
-        
-        if (!valid) {
-
-            mensagem.setMensagem("E-mail ou senha incorretos!");
-            return new ResponseEntity<>(mensagem, HttpStatus.UNAUTHORIZED);
-        } 
-
-        mensagem.setMensagem("Carregado com sucesso!");
-        return new ResponseEntity<>(mensagem, HttpStatus.OK);
     }
 }

@@ -24,10 +24,11 @@ public class Usuario implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID codigo;
 
-    // @Column(nullable = false)
+    @Column(nullable = false)
+    @NotBlank(message = "Campo nome é obrigatório!")
     private String nome;
 
-    // @Column(nullable = false)
+    @Column(nullable = false)
     private String sobrenome;
 
     @Email(message = "Insira uma e-mail válido!")

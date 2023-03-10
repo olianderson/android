@@ -30,6 +30,7 @@ public class CadastroActivity extends AppCompatActivity {
     private Retrofit retrofit;
     private DataService service;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -115,51 +116,7 @@ public class CadastroActivity extends AppCompatActivity {
                 Toast.makeText(CadastroActivity.this, t.getMessage(), Toast.LENGTH_LONG).show();
             }
         });
-
-
-        /*
-        inicializarComponentes();
-
-        // create a Retrofit instance
-        retrofit = new Retrofit.Builder()
-                .baseUrl("http://192.168.100.215:8080/math-school/")
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-
-        // create the service interface
-        service = retrofit.create(DataService.class);
-
-        // create the user object
-        Usuario novoUsuario = new Usuario(usuario);
-
-        // Recupera o serviço e salva cadastra novos usuários
-        Call<Usuario> call = service.cadastrar(usuario);
-
-        call.enqueue(new Callback<Usuario>() {
-            @Override
-            public void onResponse(Call<Usuario> call, Response<Usuario> response) {
-                if (response.isSuccessful()) {
-                    Usuario usuarioResposta = response.body();
-
-                    campoNome.setText(usuarioResposta.getNome());
-                    campoSobrenome.setText(usuarioResposta.getSobrenome());
-                    campoEmail.setText(usuarioResposta.getEmail());
-                    campoSenha.setText(usuarioResposta.getSenha());
-
-                    Toast.makeText(CadastroActivity.this, "Create account sucessful!", Toast.LENGTH_LONG).show();
-                    startActivity(new Intent(getApplicationContext(), LoginActivity.class));
-                    finish();
-
-                } else {
-                    Toast.makeText(CadastroActivity.this, "Couldn't created account", Toast.LENGTH_LONG).show();
-                }
-            }
-            @Override
-            public void onFailure(Call<Usuario> call, Throwable t) {
-            }
-        });*/
     }
-
 
     public void inicializarComponentes () {
         campoNome = findViewById(R.id.editCadastrarNome);

@@ -32,6 +32,7 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
 
         inicializarComponentes();
+//        verificaUsuarioLogado();
 
         // Fazer login do usuario
         botaoEntrar.setOnClickListener(new View.OnClickListener() {
@@ -62,9 +63,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
 
-    /**
-     * Método responsável por validar usuário com e-mail e senha
-     *
+    /** Método responsável por validar usuário com e-mail e senha
      */
     public void login(Usuario usuario) {
 
@@ -94,6 +93,20 @@ public class LoginActivity extends AppCompatActivity {
         });
 
     }
+
+    /*// verifica se o usuário está logado
+    public void verificaUsuarioLogado() {
+        // fazer a chamada de API para obter as informações do usuário
+        Call<Usuario> call = RetrofitiCliente
+                .getInstance()
+                .getApi()
+                .login();
+
+        Response<Usuario> response = call.execute();
+
+        // verificar se a resposta foi bem-sucedida e se contém informações do usuário
+        return response.isSuccessful() && response.body() != null;
+    }*/
 
     public void abrirCadastro(View view) {
         Intent i = new Intent(LoginActivity.this, CadastroActivity.class);

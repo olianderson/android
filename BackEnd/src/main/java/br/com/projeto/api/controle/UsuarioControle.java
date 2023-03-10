@@ -21,7 +21,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.com.projeto.api.modelo.Usuario;
 import br.com.projeto.api.servico.UsuarioServico;
-import br.com.projeto.api.repositorio.UsuarioRepositorio;
 import jakarta.validation.Valid;
 
 
